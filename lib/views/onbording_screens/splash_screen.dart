@@ -38,9 +38,12 @@ class _SlpashScreenState extends State<SlpashScreen> {
                 child: SizedBox(
                   height: 42.h,
                   width: 168.w,
-                  child: ReuseableText(
-                      text: 'Connect. Shop. Play. Earn with us',
-                      style: appStyle(14, offWhite, FontWeight.w500)),
+                  child: Text(
+                    'Connect. Shop. Play. Earn with us',
+                    softWrap: true,
+                    textAlign: TextAlign.center,
+                    style: appStyle(14, offWhite, FontWeight.w500),
+                  ),
                 ),
               ),
             ],
