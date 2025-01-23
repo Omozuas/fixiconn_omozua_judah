@@ -19,7 +19,7 @@ class _SlpashScreenState extends State<SlpashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 5), () {
+    Future.delayed(const Duration(seconds: 6), () {
       Get.offAll(() => const WelcomScreen());
     });
   }
