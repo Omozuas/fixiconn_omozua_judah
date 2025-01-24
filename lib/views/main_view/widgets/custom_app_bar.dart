@@ -3,6 +3,7 @@
 import 'package:fixiconn/common/app_style.dart';
 import 'package:fixiconn/common/reuseable_text.dart';
 import 'package:fixiconn/constants/constants.dart';
+import 'package:fixiconn/views/bottom_nav/bottom_nav.dart';
 import 'package:fixiconn/views/main_view/mini_app_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,7 @@ class CustomAppBar extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     GestureDetector(
-                      onTap: () => Get.back(),
+                      onTap: () => Get.offAll(() => MainScreen()),
                       child: Icon(
                         CupertinoIcons.arrow_left_circle,
                         color:

@@ -46,7 +46,7 @@ class MainScreen extends StatelessWidget {
               BottomNavigationBarItem(
                   icon: GestureDetector(
                     onTap: () {
-                      Get.to(() => const MiniAppScreen());
+                      Get.offAll(() => const MiniAppScreen());
                     },
                     child: SvgPicture.asset(
                       'assets/icons/layer.svg',
