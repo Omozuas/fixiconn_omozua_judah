@@ -63,21 +63,32 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
               // Add a slider for seeking
 
               Positioned(
-                bottom: -18,
-                right: -20,
-                // left: 0,
-                width: size.width.w,
-                child: Slider(
-                  activeColor: white,
-                  min: 0.0,
-                  max:
-                      videoPlayerController.value.duration.inSeconds.toDouble(),
-                  value:
-                      videoPlayerController.value.position.inSeconds.toDouble(),
-                  onChanged: (value) {
-                    videoPlayerController
-                        .seekTo(Duration(seconds: value.toInt()));
-                  },
+                bottom: -14,
+                right: 2,
+                left: -8,
+                child: SizedBox(
+                  width: size.width.w,
+                  child: Center(
+                    child: SliderTheme(
+                      data: SliderTheme.of(context).copyWith(
+                        thumbShape: const RoundSliderThumbShape(
+                            enabledThumbRadius: 8), // Adjust size here
+                        trackHeight: 3, // Optionally adjust track height
+                      ),
+                      child: Slider(
+                        activeColor: white,
+                        min: 0.0,
+                        max: videoPlayerController.value.duration.inSeconds
+                            .toDouble(),
+                        value: videoPlayerController.value.position.inSeconds
+                            .toDouble(),
+                        onChanged: (value) {
+                          videoPlayerController
+                              .seekTo(Duration(seconds: value.toInt()));
+                        },
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ],

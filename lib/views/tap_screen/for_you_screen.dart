@@ -29,7 +29,7 @@ class _ForYouScreenState extends State<ForYouScreen> {
           children: [
             VideoPlayerItem(videoUrl: v["videoUrl"]),
             Padding(
-              padding: EdgeInsets.only(left: 10.w, right: 10.w, bottom: 10.h),
+              padding: EdgeInsets.only(left: 10.w, right: 10.w, bottom: 20.h),
               child: Column(
                 children: [
                   const Spacer(),

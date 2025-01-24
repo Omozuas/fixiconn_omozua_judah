@@ -80,7 +80,7 @@ class _MiniAppScreenState extends State<MiniAppScreen> {
                   ),
                   SizedBox(
                     width: width,
-                    height: 120.h,
+                    height: 125.h,
                     child: ListView.builder(
                         itemCount: games.length,
                         shrinkWrap: true,
@@ -152,7 +152,7 @@ class _MiniAppScreenState extends State<MiniAppScreen> {
                   ),
                   SizedBox(
                     width: width,
-                    height: 120.h,
+                    height: 125.h,
                     child: ListView.builder(
                         itemCount: games.length,
                         shrinkWrap: true,

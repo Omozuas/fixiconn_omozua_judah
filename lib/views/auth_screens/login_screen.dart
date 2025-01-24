@@ -53,101 +53,103 @@ class _LoginScreenState extends State<LoginScreen> {
       body: SafeArea(
         child: Form(
           key: _formKey,
-          child: Padding(
-            padding: EdgeInsets.only(
-                left: 15.w, right: 15.w, bottom: 10.h, top: 40.h),
-            child: Stack(
-              children: [
-                Column(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(
-                        bottom: 50.h,
-                      ),
-                      child: SvgPicture.asset(
-                        "assets/images/logo.svg",
-                        // ignore: deprecated_member_use
-                        color: appIconBlue,
-                      ),
-                    ),
-                    CustomTextFields(
-                        firstText: 'username',
-                        extraText: '*',
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter your Username';
-                          }
-
-                          return null;
-                        },
-                        hintText: 'username',
-                        controller: _userNameController),
-                    SizedBox(
-                      height: 20.h,
-                    ),
-                    CustomTextFields(
-                        firstText: 'Password',
-                        extraText: '*',
-                        hintText: '••••••••',
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter your Password';
-                          }
-                          if (value.length < 8) {
-                            return 'Password must be at least 8 characters';
-                          }
-                          // Regular expressions for validation
-                          final hasUppercase = RegExp(r'[A-Z]');
-                          final hasLowercase = RegExp(r'[a-z]');
-                          final hasDigits = RegExp(r'[0-9]');
-                          final hasSpecialCharacters =
-                              RegExp(r'[!@#$%^&*(),.?":{}|<>]');
-
-                          if (!hasUppercase.hasMatch(value)) {
-                            return 'Password must include at least one uppercase letter';
-                          }
-                          if (!hasLowercase.hasMatch(value)) {
-                            return 'Password must include at least one lowercase letter';
-                          }
-                          if (!hasDigits.hasMatch(value)) {
-                            return 'Password must include at least one number';
-                          }
-                          if (!hasSpecialCharacters.hasMatch(value)) {
-                            return 'Password must include at least one special character';
-                          }
-                          return null; // Password is valid
-                        },
-                        obscureText: _isPasswordObscured,
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            _isPasswordObscured
-                                ? Icons.visibility_off
-                                : Icons.visibility,
-                          ),
-                          onPressed: _togglePasswordVisibility,
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.only(
+                  left: 15.w, right: 15.w, bottom: 10.h, top: 40.h),
+              child: Column(
+                children: [
+                  Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(
+                          bottom: 50.h,
                         ),
-                        controller: _passwordController),
-                    Padding(
-                      padding: EdgeInsets.only(top: 20.h, bottom: 20.h),
-                      child: LargButton(
-                        onTap: proceed,
-                        color: appBlue,
-                        textcolor: white,
-                        borderColor: appBlue,
-                        text: 'Log In',
+                        child: SvgPicture.asset(
+                          "assets/images/logo.svg",
+                          // ignore: deprecated_member_use
+                          color: appIconBlue,
+                        ),
                       ),
-                    ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: ReuseableText(
-                          text: 'Forgotten Password?',
-                          style: appStyle(12, appBlue, FontWeight.w600)),
-                    )
-                  ],
-                ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Padding(
+                      CustomTextFields(
+                          firstText: 'username',
+                          extraText: '*',
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your Username';
+                            }
+
+                            return null;
+                          },
+                          hintText: 'username',
+                          controller: _userNameController),
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                      CustomTextFields(
+                          firstText: 'Password',
+                          extraText: '*',
+                          hintText: '••••••••',
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your Password';
+                            }
+                            if (value.length < 8) {
+                              return 'Password must be at least 8 characters';
+                            }
+                            // Regular expressions for validation
+                            final hasUppercase = RegExp(r'[A-Z]');
+                            final hasLowercase = RegExp(r'[a-z]');
+                            final hasDigits = RegExp(r'[0-9]');
+                            final hasSpecialCharacters =
+                                RegExp(r'[!@#$%^&*(),.?":{}|<>]');
+
+                            if (!hasUppercase.hasMatch(value)) {
+                              return 'Password must include at least one uppercase letter';
+                            }
+                            if (!hasLowercase.hasMatch(value)) {
+                              return 'Password must include at least one lowercase letter';
+                            }
+                            if (!hasDigits.hasMatch(value)) {
+                              return 'Password must include at least one number';
+                            }
+                            if (!hasSpecialCharacters.hasMatch(value)) {
+                              return 'Password must include at least one special character';
+                            }
+                            return null; // Password is valid
+                          },
+                          obscureText: _isPasswordObscured,
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _isPasswordObscured
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                            ),
+                            onPressed: _togglePasswordVisibility,
+                          ),
+                          controller: _passwordController),
+                      Padding(
+                        padding: EdgeInsets.only(top: 20.h, bottom: 20.h),
+                        child: LargButton(
+                          onTap: proceed,
+                          color: appBlue,
+                          textcolor: white,
+                          borderColor: appBlue,
+                          text: 'Log In',
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {},
+                        child: ReuseableText(
+                            text: 'Forgotten Password?',
+                            style: appStyle(12, appBlue, FontWeight.w600)),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: height * 0.2,
+                  ),
+                  Padding(
                     padding: EdgeInsets.only(bottom: 10.h),
                     child: LargButton(
                         onTap: () {},
@@ -155,9 +157,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         color: white,
                         textcolor: appBlue,
                         text: 'Create new account'),
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
           ),
         ),
