@@ -13,6 +13,10 @@ HexColor appIconBlue = HexColor('#00448C');
 HexColor appBlack = HexColor('#000000');
 HexColor iconTextColor = HexColor('#93A2B7');
 HexColor skyBlue = HexColor('#5ADBED');
+HexColor lightGreen = HexColor('#E6FDF1');
+HexColor showSucces = HexColor('#39BF2D');
+HexColor showLightRed = HexColor('#FFA3A6');
+HexColor showErro = HexColor('#EC0C0C');
 
 double height = 825.h;
 double width = 375.w;

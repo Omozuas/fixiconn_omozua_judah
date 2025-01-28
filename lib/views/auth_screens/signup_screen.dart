@@ -1,28 +1,25 @@
 import 'dart:developer';
 
 import 'package:fixiconn/apis/river_pod/auth/auth_provider.dart';
-import 'package:fixiconn/common/app_style.dart';
 import 'package:fixiconn/common/custom_textfield.dart';
 import 'package:fixiconn/common/larg_button.dart';
-import 'package:fixiconn/common/reuseable_text.dart';
 import 'package:fixiconn/common/snackbar/custom_snack_bar.dart';
 import 'package:fixiconn/constants/constants.dart';
-import 'package:fixiconn/views/auth_screens/signup_screen.dart';
-import 'package:fixiconn/views/bottom_nav/bottom_nav.dart';
+import 'package:fixiconn/views/auth_screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-class LoginScreen extends ConsumerStatefulWidget {
-  const LoginScreen({super.key});
+class SignupScreen extends ConsumerStatefulWidget {
+  const SignupScreen({super.key});
 
   @override
-  ConsumerState<LoginScreen> createState() => _LoginScreenState();
+  ConsumerState<SignupScreen> createState() => _SignupScreenState();
 }
 
-class _LoginScreenState extends ConsumerState<LoginScreen> {
+class _SignupScreenState extends ConsumerState<SignupScreen> {
   final _formKey = GlobalKey<FormState>();
   final _passwordController = TextEditingController();
   final _userNameController = TextEditingController();
@@ -43,15 +40,15 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       try {
         await ref
             .read(setupProfileProvider.notifier)
-            .login(userName: username, password: password);
-        final res = ref.read(setupProfileProvider).login.value;
+            .signUp(userName: username, password: password);
+        final res = ref.read(setupProfileProvider).signup.value;
         if (res == null) return;
         if (res.success == true) {
           showSuccess(
             res.message ?? '',
           );
           // Proceed with the login process
-          Get.offAll(() => MainScreen());
+          Get.to(() => const LoginScreen());
         } else {
           log(res.message ?? '');
           showError(
@@ -69,7 +66,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final isLoading = ref.watch(setupProfileProvider).login.isLoading;
+    final isLoading = ref.watch(setupProfileProvider).signup.isLoading;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: white,
@@ -166,19 +163,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         padding: EdgeInsets.only(top: 20.h, bottom: 20.h),
                         child: LargButton(
                           onTap: proceed,
-                          isLoading: isLoading,
                           color: appBlue,
+                          isLoading: isLoading,
                           textcolor: white,
                           borderColor: appBlue,
-                          text: 'Log In',
+                          text: 'Sign up',
                         ),
                       ),
-                      GestureDetector(
-                        onTap: () {},
-                        child: ReuseableText(
-                            text: 'Forgotten Password?',
-                            style: appStyle(12, appBlue, FontWeight.w600)),
-                      )
                     ],
                   ),
                   SizedBox(
@@ -188,12 +179,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     padding: EdgeInsets.only(bottom: 10.h),
                     child: LargButton(
                         onTap: () {
-                          Get.to(() => const SignupScreen());
+                          Get.to(() => const LoginScreen());
                         },
                         borderColor: appLgray,
                         color: white,
                         textcolor: appBlue,
-                        text: 'Create new account'),
+                        text: 'already have an account'),
                   )
                 ],
               ),

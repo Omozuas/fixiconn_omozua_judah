@@ -10,11 +10,12 @@ class LargButton extends StatelessWidget {
     required this.color,
     required this.textcolor,
     required this.text,
+    this.isLoading = false,
     required this.borderColor,
   });
   final void Function() onTap;
   final Color color, textcolor, borderColor;
-
+  final bool isLoading;
   final String text;
   @override
   Widget build(BuildContext context) {
@@ -28,8 +29,10 @@ class LargButton extends StatelessWidget {
             border: Border.all(color: borderColor, width: 1),
             borderRadius: BorderRadius.all(Radius.circular(10.r))),
         child: Center(
-          child: ReuseableText(
-              text: text, style: appStyle(16, textcolor, FontWeight.w500)),
+          child: isLoading
+              ? const CircularProgressIndicator()
+              : ReuseableText(
+                  text: text, style: appStyle(16, textcolor, FontWeight.w500)),
         ),
       ),
     );

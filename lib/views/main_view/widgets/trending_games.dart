@@ -8,12 +8,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class TrendingGames extends StatelessWidget {
   const TrendingGames({
     super.key,
-    required this.item,
     required this.onTap,
     required this.currentTheme,
+    required this.url,
+    required this.name,
   });
 
-  final dynamic item;
+  final String url, name;
   final void Function() onTap;
   final AppTheme currentTheme;
   @override
@@ -33,7 +34,7 @@ class TrendingGames extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10.r),
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: NetworkImage(item["img"]),
+                  image: NetworkImage(url),
                 ),
               ),
             ),
@@ -41,7 +42,7 @@ class TrendingGames extends StatelessWidget {
               height: 5.h,
             ),
             ReuseableText(
-              text: item["gameName"],
+              text: name,
               style: appStyle(
                   10,
                   currentTheme == AppTheme.light ? appBlack : white,

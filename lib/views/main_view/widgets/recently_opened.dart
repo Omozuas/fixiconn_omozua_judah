@@ -8,12 +8,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class RecentlyOpened extends StatelessWidget {
   const RecentlyOpened({
     super.key,
-    required this.item,
     required this.onTap,
     required this.currentTheme,
+    required this.url,
+    required this.name,
   });
 
-  final dynamic item;
+  final String url, name;
   final void Function() onTap;
   final AppTheme currentTheme;
   @override
@@ -34,7 +35,7 @@ class RecentlyOpened extends StatelessWidget {
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: NetworkImage(
-                    item["img"],
+                    url,
                   ),
                 ),
               ),
@@ -43,7 +44,7 @@ class RecentlyOpened extends StatelessWidget {
               height: 5.h,
             ),
             ReuseableText(
-              text: item["gameName"],
+              text: name,
               style: appStyle(
                   10,
                   currentTheme == AppTheme.light ? appBlack : white,

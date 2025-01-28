@@ -7,9 +7,11 @@ import 'package:fixiconn/constants/constants.dart';
 
 class VideoPlayerItem extends StatefulWidget {
   final String videoUrl;
+  final Function(VideoPlayerController)? onControllerInitialized;
   const VideoPlayerItem({
     super.key,
     required this.videoUrl,
+    this.onControllerInitialized,
   });
 
   @override
@@ -24,15 +26,18 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
     // ignore: deprecated_member_use
     videoPlayerController = VideoPlayerController.network(widget.videoUrl)
       ..initialize().then((onValue) {
-        videoPlayerController.play();
-        videoPlayerController.setLooping(true);
-        videoPlayerController.setVolume(6);
-        setState(() {});
+        widget.onControllerInitialized?.call(videoPlayerController);
+
+        setState(() {
+          videoPlayerController.play();
+          videoPlayerController.setLooping(true);
+          videoPlayerController.setVolume(6);
+        });
       });
     videoPlayerController.addListener(() {
-      setState(() {}); // Update the UI whenever the controller's state changes
+      // setState(() {}); // Update the UI whenever the controller's state changes
     });
-    videoPlayerController.play();
+    // videoPlayerController.play();
   }
 
   @override

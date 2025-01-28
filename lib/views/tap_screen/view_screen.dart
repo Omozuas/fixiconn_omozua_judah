@@ -38,7 +38,7 @@ class _ViewScreenState extends State<ViewScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      backgroundColor: blue,
+      backgroundColor: appBlack,
       body: Stack(
         children: [
           TabBarView(
@@ -67,39 +67,35 @@ class _ViewScreenState extends State<ViewScreen>
                         ],
                       ),
                     ),
-                    DefaultTabController(
-                      length: 3,
-                      initialIndex: 2,
-                      child: Column(
-                        children: [
-                          TabBar(
-                            tabAlignment: TabAlignment.center,
-                            indicatorWeight: 1,
-                            indicatorSize: TabBarIndicatorSize.label,
-                            dividerColor: Colors.transparent,
-                            indicatorColor: white,
-                            indicatorPadding: EdgeInsets.zero,
-                            labelPadding:
-                                EdgeInsets.only(left: 20.w, right: 20.w),
-                            labelStyle: appStyle(12, white, FontWeight.w500),
-                            controller: _tabController,
-                            tabs: [
-                              ReuseableText(
-                                text: 'LIVE',
-                                style: appStyle(12, white, FontWeight.w500),
-                              ),
-                              ReuseableText(
-                                text: 'Following',
-                                style: appStyle(12, white, FontWeight.w500),
-                              ),
-                              ReuseableText(
-                                text: 'For You',
-                                style: appStyle(12, white, FontWeight.w500),
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
+                    Column(
+                      children: [
+                        TabBar(
+                          tabAlignment: TabAlignment.center,
+                          indicatorWeight: 1,
+                          indicatorSize: TabBarIndicatorSize.label,
+                          dividerColor: Colors.transparent,
+                          indicatorColor: white,
+                          indicatorPadding: EdgeInsets.zero,
+                          labelPadding:
+                              EdgeInsets.only(left: 20.w, right: 20.w),
+                          labelStyle: appStyle(12, white, FontWeight.w500),
+                          controller: _tabController,
+                          tabs: [
+                            ReuseableText(
+                              text: 'LIVE',
+                              style: appStyle(12, white, FontWeight.w500),
+                            ),
+                            ReuseableText(
+                              text: 'Following',
+                              style: appStyle(12, white, FontWeight.w500),
+                            ),
+                            ReuseableText(
+                              text: 'For You',
+                              style: appStyle(12, white, FontWeight.w500),
+                            )
+                          ],
+                        ),
+                      ],
                     ),
                     Expanded(
                       child: Row(

@@ -8,12 +8,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class CategoriesOFGames extends StatelessWidget {
   const CategoriesOFGames({
     super.key,
-    required this.item,
     required this.onTap,
     required this.currentTheme,
+    required this.url,
+    required this.name,
   });
 
-  final Map<String, dynamic> item;
+  final String url, name;
   final void Function() onTap;
   final AppTheme currentTheme;
   @override
@@ -32,7 +33,7 @@ class CategoriesOFGames extends StatelessWidget {
               borderRadius: BorderRadius.circular(10.r),
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: NetworkImage(item["img"]),
+                image: NetworkImage(url),
               ),
             ),
           ),
@@ -44,7 +45,7 @@ class CategoriesOFGames extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ReuseableText(
-                text: item["gameName"],
+                text: name,
                 style: appStyle(
                     10,
                     currentTheme == AppTheme.light ? appBlack : white,

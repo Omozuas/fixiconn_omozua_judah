@@ -2,6 +2,7 @@ import 'package:fixiconn/common/background_image_container.dart';
 import 'package:fixiconn/common/reuseable_button.dart';
 import 'package:fixiconn/constants/constants.dart';
 import 'package:fixiconn/views/auth_screens/login_screen.dart';
+import 'package:fixiconn/views/auth_screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -39,7 +40,9 @@ class WelcomScreen extends StatelessWidget {
                     width: 15.w,
                   ),
                   ReuseableButton(
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(() => const SignupScreen());
+                    },
                     color: appBlue,
                     textcolor: white,
                     horizontal: 50,
