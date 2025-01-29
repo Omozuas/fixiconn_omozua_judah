@@ -33,7 +33,9 @@ class CategoriesOFGames extends StatelessWidget {
               borderRadius: BorderRadius.circular(10.r),
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: NetworkImage(url),
+                image: url == "No Internet connection"
+                    ? const AssetImage('assets/images/bk2.jpg')
+                    : NetworkImage(url),
               ),
             ),
           ),

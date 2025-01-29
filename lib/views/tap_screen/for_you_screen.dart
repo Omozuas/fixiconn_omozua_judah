@@ -53,6 +53,15 @@ class _ForYouScreenState extends ConsumerState<ForYouScreen> {
     });
     try {
       await ref.read(getVideosProvider.notifier).getVideos(limit: page);
+      final info = ref.read(getVideosProvider).value;
+      log('${info?.message ?? ''} messs');
+      if (info == null) return;
+      if (info.success == true) {
+      } else {
+        if (info.message == 'No Internet connection') {
+          showError(info.message ?? '');
+        }
+      }
     } catch (e) {
       log('Error loading initial data: $e');
     }
@@ -71,6 +80,14 @@ class _ForYouScreenState extends ConsumerState<ForYouScreen> {
     try {
       page += 10;
       await ref.read(getVideosProvider.notifier).getVideos(limit: page);
+      final info = ref.read(getVideosProvider).value;
+      if (info == null) return;
+      if (info.success == true) {
+      } else {
+        if (info.message == 'No Internet connection') {
+          showError(info.message ?? '');
+        }
+      }
     } catch (e) {
       log('Error loading more videos: $e');
     } finally {
@@ -178,7 +195,7 @@ class _ForYouScreenState extends ConsumerState<ForYouScreen> {
         error: (e, s) {
           return Center(
               child: ReuseableText(
-                  text: 'Refresh To Reload',
+                  text: 'Refresh To Reload $e',
                   style: appStyle(12, white, FontWeight.w600)));
         },
         loading: () => Shimmer.fromColors(
@@ -193,7 +210,7 @@ class _ForYouScreenState extends ConsumerState<ForYouScreen> {
               final isLiked = likedVideos.contains(v["id"]);
               return Stack(
                 children: [
-                  VideoPlayerItem(videoUrl: v["videoUrl"]),
+                  // VideoPlayerItem(videoUrl: v["videoUrl"]),
                   Padding(
                     padding:
                         EdgeInsets.only(left: 10.w, right: 10.w, bottom: 20.h),

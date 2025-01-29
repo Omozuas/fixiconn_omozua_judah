@@ -4,6 +4,7 @@ import 'package:fixiconn/apis/river_pod/get_game/get_all_random_game.dart';
 import 'package:fixiconn/apis/river_pod/get_game/get_random_game.dart';
 import 'package:fixiconn/common/app_style.dart';
 import 'package:fixiconn/common/reuseable_text.dart';
+import 'package:fixiconn/common/snackbar/custom_snack_bar.dart';
 import 'package:fixiconn/constants/constants.dart';
 import 'package:fixiconn/views/main_view/widgets/categories_o_f_games.dart';
 import 'package:fixiconn/views/main_view/widgets/custom_app_bar.dart';
@@ -42,6 +43,14 @@ class _MiniAppScreenState extends ConsumerState<MiniAppScreen> {
   void loadGame() async {
     try {
       await ref.read(getRandomGame.notifier).getRandomGame();
+      final info = ref.read(getAllRandomGame).value;
+      if (info == null) return;
+      if (info.success == true) {
+      } else {
+        if (info.message == 'No Internet connection') {
+          showError(info.message ?? '');
+        }
+      }
     } catch (e) {
       log('Error loading initial data: $e');
     }
@@ -51,6 +60,14 @@ class _MiniAppScreenState extends ConsumerState<MiniAppScreen> {
     log(' ....');
     try {
       await ref.read(getAllRandomGame.notifier).getAllRandomGame();
+      final info = ref.read(getAllRandomGame).value;
+      if (info == null) return;
+      if (info.success == true) {
+      } else {
+        if (info.message == 'No Internet connection') {
+          showError(info.message ?? '');
+        }
+      }
     } catch (e) {
       log('Error loading initial data: $e');
     }
@@ -142,8 +159,7 @@ class _MiniAppScreenState extends ConsumerState<MiniAppScreen> {
                             baseColor: white,
                             highlightColor: skyBlue.withOpacity(0.1),
                             child: TrendingGames(
-                              url:
-                                  'https://s3-alpha-sig.figma.com/img/18b4/4835/e7fce32aa2d764364a7a7c045879c343?Expires=1738540800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=MZj3YGDS6o4ReRCLT2YttzmVO7GaueMCr2DG7UGGM-eozU8JhC8kb6rGr3GwuV52CV4An6xzA3Y4zLaou5dXPjNwHJxMGu0ce-85SQotEsbb5YgGYMppmOO2ZkO8W5yeOrQIZ2Jq6DjvaZ9oBs0chK3a~uWnQoWUzAxzsAcuZtDtXk4eYJrVTcIcHepA43Bj81X7TP8yx6sgWFIt08cZJCwLi3e~YUhnsm9AON4546m9dErBUF5nH4S9vS1qBKTs9WYsqyrbNyH-SZ0RRO2v~HCAOMPwopVEv2Wsl417GvdP8Gq0xvEy17cJGV7InAkDUGlLSvwfm9biRPUQucf-1w__',
+                              url: "No Internet connection",
                               name: '.....',
                               onTap: () {},
                               currentTheme: _currentTheme,
@@ -154,8 +170,7 @@ class _MiniAppScreenState extends ConsumerState<MiniAppScreen> {
                           baseColor: white,
                           highlightColor: skyBlue.withOpacity(0.1),
                           child: TrendingGames(
-                            url:
-                                'https://s3-alpha-sig.figma.com/img/18b4/4835/e7fce32aa2d764364a7a7c045879c343?Expires=1738540800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=MZj3YGDS6o4ReRCLT2YttzmVO7GaueMCr2DG7UGGM-eozU8JhC8kb6rGr3GwuV52CV4An6xzA3Y4zLaou5dXPjNwHJxMGu0ce-85SQotEsbb5YgGYMppmOO2ZkO8W5yeOrQIZ2Jq6DjvaZ9oBs0chK3a~uWnQoWUzAxzsAcuZtDtXk4eYJrVTcIcHepA43Bj81X7TP8yx6sgWFIt08cZJCwLi3e~YUhnsm9AON4546m9dErBUF5nH4S9vS1qBKTs9WYsqyrbNyH-SZ0RRO2v~HCAOMPwopVEv2Wsl417GvdP8Gq0xvEy17cJGV7InAkDUGlLSvwfm9biRPUQucf-1w__',
+                            url: "No Internet connection",
                             name: '.....',
                             onTap: () {},
                             currentTheme: _currentTheme,
@@ -226,8 +241,7 @@ class _MiniAppScreenState extends ConsumerState<MiniAppScreen> {
                               itemBuilder: (context, i) {
                                 return CategoriesOFGames(
                                   name: '......',
-                                  url:
-                                      'https://s3-alpha-sig.figma.com/img/18b4/4835/e7fce32aa2d764364a7a7c045879c343?Expires=1738540800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=MZj3YGDS6o4ReRCLT2YttzmVO7GaueMCr2DG7UGGM-eozU8JhC8kb6rGr3GwuV52CV4An6xzA3Y4zLaou5dXPjNwHJxMGu0ce-85SQotEsbb5YgGYMppmOO2ZkO8W5yeOrQIZ2Jq6DjvaZ9oBs0chK3a~uWnQoWUzAxzsAcuZtDtXk4eYJrVTcIcHepA43Bj81X7TP8yx6sgWFIt08cZJCwLi3e~YUhnsm9AON4546m9dErBUF5nH4S9vS1qBKTs9WYsqyrbNyH-SZ0RRO2v~HCAOMPwopVEv2Wsl417GvdP8Gq0xvEy17cJGV7InAkDUGlLSvwfm9biRPUQucf-1w__',
+                                  url: "No Internet connection",
                                   onTap: () {},
                                   currentTheme: _currentTheme,
                                 );
@@ -253,8 +267,7 @@ class _MiniAppScreenState extends ConsumerState<MiniAppScreen> {
                             itemBuilder: (context, i) {
                               return CategoriesOFGames(
                                 name: '......',
-                                url:
-                                    'https://s3-alpha-sig.figma.com/img/18b4/4835/e7fce32aa2d764364a7a7c045879c343?Expires=1738540800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=MZj3YGDS6o4ReRCLT2YttzmVO7GaueMCr2DG7UGGM-eozU8JhC8kb6rGr3GwuV52CV4An6xzA3Y4zLaou5dXPjNwHJxMGu0ce-85SQotEsbb5YgGYMppmOO2ZkO8W5yeOrQIZ2Jq6DjvaZ9oBs0chK3a~uWnQoWUzAxzsAcuZtDtXk4eYJrVTcIcHepA43Bj81X7TP8yx6sgWFIt08cZJCwLi3e~YUhnsm9AON4546m9dErBUF5nH4S9vS1qBKTs9WYsqyrbNyH-SZ0RRO2v~HCAOMPwopVEv2Wsl417GvdP8Gq0xvEy17cJGV7InAkDUGlLSvwfm9biRPUQucf-1w__',
+                                url: "No Internet connection",
                                 onTap: () {},
                                 currentTheme: _currentTheme,
                               );
@@ -316,8 +329,7 @@ class _MiniAppScreenState extends ConsumerState<MiniAppScreen> {
                               scrollDirection: Axis.horizontal,
                               itemBuilder: (context, i) {
                                 return RecentlyOpened(
-                                  url:
-                                      'https://s3-alpha-sig.figma.com/img/18b4/4835/e7fce32aa2d764364a7a7c045879c343?Expires=1738540800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=MZj3YGDS6o4ReRCLT2YttzmVO7GaueMCr2DG7UGGM-eozU8JhC8kb6rGr3GwuV52CV4An6xzA3Y4zLaou5dXPjNwHJxMGu0ce-85SQotEsbb5YgGYMppmOO2ZkO8W5yeOrQIZ2Jq6DjvaZ9oBs0chK3a~uWnQoWUzAxzsAcuZtDtXk4eYJrVTcIcHepA43Bj81X7TP8yx6sgWFIt08cZJCwLi3e~YUhnsm9AON4546m9dErBUF5nH4S9vS1qBKTs9WYsqyrbNyH-SZ0RRO2v~HCAOMPwopVEv2Wsl417GvdP8Gq0xvEy17cJGV7InAkDUGlLSvwfm9biRPUQucf-1w__',
+                                  url: "No Internet connection",
                                   name: '... ',
                                   onTap: () {},
                                   currentTheme: _currentTheme,
@@ -335,8 +347,7 @@ class _MiniAppScreenState extends ConsumerState<MiniAppScreen> {
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context, i) {
                               return RecentlyOpened(
-                                url:
-                                    'https://s3-alpha-sig.figma.com/img/18b4/4835/e7fce32aa2d764364a7a7c045879c343?Expires=1738540800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=MZj3YGDS6o4ReRCLT2YttzmVO7GaueMCr2DG7UGGM-eozU8JhC8kb6rGr3GwuV52CV4An6xzA3Y4zLaou5dXPjNwHJxMGu0ce-85SQotEsbb5YgGYMppmOO2ZkO8W5yeOrQIZ2Jq6DjvaZ9oBs0chK3a~uWnQoWUzAxzsAcuZtDtXk4eYJrVTcIcHepA43Bj81X7TP8yx6sgWFIt08cZJCwLi3e~YUhnsm9AON4546m9dErBUF5nH4S9vS1qBKTs9WYsqyrbNyH-SZ0RRO2v~HCAOMPwopVEv2Wsl417GvdP8Gq0xvEy17cJGV7InAkDUGlLSvwfm9biRPUQucf-1w__',
+                                url: "No Internet connection",
                                 name: '... ',
                                 onTap: () {},
                                 currentTheme: _currentTheme,
